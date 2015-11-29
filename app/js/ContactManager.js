@@ -1,8 +1,10 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
 import Router from './router'
 import { default as ContactCollection}  from './collections/contacts'
-import { default as ContactsView } from './views/contacts'
 import { default as ContactForm } from './views/contactForm'
 import { default as ContactModel } from './models/contact'
+import ContactList from './components/ContactList.react'
 
 const ContactManager = {
   Models: {},
@@ -21,11 +23,8 @@ const ContactManager = {
     });
 
     router.on('route:showContacts', function() {
-      var contactsView = new ContactsView({
-        collection: contacts
-      });
-
-      $('.main-container').html(contactsView.render().$el);
+      // Call toJSON on BackBone collection to convert to raw JS object
+      ReactDOM.render(<ContactList contacts={contacts} />, $('.main-container')[0]);
     });
 
     router.on('route:newContact', function() {
