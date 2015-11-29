@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "node ./script/build.js",
-    "start": "./node_modules/nodemon/bin/nodemon.js ./app/js/server.js",
+    "start": "node ./app/js/server.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js ./app/js/server.js",
     "watch": "node ./script/compile.js",
     "test": "mocha --compilers js:babel-core/register --watch $(find app -name '*test.js') -R spec"
   },

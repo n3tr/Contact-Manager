@@ -4,10 +4,10 @@ Backbone Contact Manager
 ## Hacking
 ```
 npm install
-npm start
+npm run dev
 # open another terminal
 npm run watch
-# localhost:3000
+ # localhost:3000
 ```
 
 Simple Backbone.js example application
