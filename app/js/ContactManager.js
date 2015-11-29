@@ -24,7 +24,7 @@ const ContactManager = {
     });
 
     router.on('route:showContacts', function() {
-      ReactDOM.render(<ContactList store={store} />, $('.main-container')[0]);
+      ReactDOM.render(<ContactList store={store} />, document.getElementById('root'));
     });
 
     router.on('route:newContact', function() {
@@ -37,7 +37,7 @@ const ContactManager = {
         <NewContact
           store={store}
           isNew={true}
-          onClickSubmit={onClickSubmit} />, $('.main-container')[0]);
+          onClickSubmit={onClickSubmit} />, document.getElementById('root'));
     });
 
     router.on('route:editContact', function(id) {
@@ -50,7 +50,7 @@ const ContactManager = {
           <NewContact
             editingId={id}
             store={store}
-            onClickSubmit={onClickSubmit} />, $('.main-container')[0]);
+            onClickSubmit={onClickSubmit} />, document.getElementById('root'));
       } else {
         router.navigate('contacts', true);
       }
