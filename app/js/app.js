@@ -1,6 +1,7 @@
 import ContactManager from './ContactManager';
 import { createStore, combineReducers } from 'redux'
-import contactReducer from './reducers/contactReducer'
+import contactsReducer from './reducers/contactsReducer'
+import contactByIdReducer from './reducers/contactByIdReducer'
 
 let initialState = {
   contacts: [
@@ -47,11 +48,22 @@ for (var i in initialState.contacts) {
   initialState.contacts[i].avatar = _.random(1, 15) + '.jpg'
 }
 
+var storeState = {
+  contacts: initialState.contacts.map( (contact) =>{
+    return contact.id
+  } ) ,
+  contactById: initialState.contacts.reduce((map, contact) => {
+    map[contact.id] = contact;
+    return map;
+  }, {})
+}
+
 // Redux
 let ContactApp = combineReducers({
-  contacts: contactReducer
+  contacts: contactsReducer,
+  contactById: contactByIdReducer
 });
-let store = createStore(ContactApp, initialState);
+let store = createStore(ContactApp, storeState );
 
 
 ContactManager.start(initialState,store);

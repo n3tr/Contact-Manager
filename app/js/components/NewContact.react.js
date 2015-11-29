@@ -3,17 +3,36 @@ import React, { PropTypes } from 'react'
 class NewContact extends React.Component{
   onFormSubmit(e) {
     e.preventDefault();
-    let attrs = {
+    var { store, editingId } = this.props;
+    var { contacts } = store.getState();
+    var attrs = {
       name: this.refs['input-name'].value,
       tel: this.refs['input-tel'].value,
-      email: this.refs['input-email'].value
+      email: this.refs['input-email'].value,
     };
+
+    if(editingId) {
+      attrs.id = editingId;
+      store.dispatch({
+        type: 'UPDATE_CONTACT',
+        contact: attrs
+      })
+    } else {
+      attrs.id = contacts.length === 0 ? 1 : contacts[contacts.length - 1] + 1;
+      attrs.avatar =  _.random(1, 15) + '.jpg',
+      store.dispatch({
+        type: 'ADD_CONTACT',
+        contact: attrs
+      })
+    }
 
     // Should be replace with redux
     this.props.onClickSubmit(attrs);
   }
   render () {
-    let { isNew, name, email, tel } = this.props.contact.toJSON();
+    var { store, isNew, editingId } = this.props;
+    var { contactById } = store.getState()
+    var { name, email, tel } = contactById[editingId] ? contactById[editingId] : {};
     return (
       <div>
         <h2 className="page-header text-center"> {isNew ? 'Create' : 'Edit'} Contact</h2>

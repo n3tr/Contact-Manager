@@ -24,38 +24,32 @@ const ContactManager = {
     });
 
     router.on('route:showContacts', function() {
-      // Call toJSON on BackBone collection to convert to raw JS object
       ReactDOM.render(<ContactList store={store} />, $('.main-container')[0]);
     });
 
     router.on('route:newContact', function() {
       // TODO: Temp use, should be replace with flux/redux
       let onClickSubmit = (attrs, e) => {
-        attrs.id = contacts.isEmpty() ? 1 : (_.max(contacts.pluck('id')) + 1);
-        contacts.add(attrs);
         router.navigate('contacts', true);
       }
 
       ReactDOM.render(
         <NewContact
-          contact={new ContactModel()}
+          store={store}
+          isNew={true}
           onClickSubmit={onClickSubmit} />, $('.main-container')[0]);
     });
 
     router.on('route:editContact', function(id) {
-      var contact = contacts.get(id),
-          editContactForm;
-
-      if (contact) {
-        // TODO: Temp use, should be replace with flux/redux
+      if (id) {
+        // TODO: To be replaced with react-router
         let onClickSubmit = (attrs, e) => {
-          contact.set(attrs);
           router.navigate('contacts', true);
         }
-
         ReactDOM.render(
           <NewContact
-            contact={contact}
+            editingId={id}
+            store={store}
             onClickSubmit={onClickSubmit} />, $('.main-container')[0]);
       } else {
         router.navigate('contacts', true);

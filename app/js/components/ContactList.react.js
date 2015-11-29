@@ -28,7 +28,7 @@ export default class ContactList extends React.Component {
   }
   render() {
     let self = this;
-    let { contacts } = this.state;
+    let { contacts, contactById } = this.state;
     return (
       <div>
         <h2 className="page-header text-center">List of contacts</h2>
@@ -37,8 +37,8 @@ export default class ContactList extends React.Component {
         </p>
         <ul className="media-list row contacts-container">
           {
-            contacts.map( (contact, i) => {
-              return <Contact contact={contact} onClickDelete={
+            contacts.map( (id, i) => {
+              return <Contact contact={contactById[id]} onClickDelete={
                 self.onClickDelete.bind(this)
               } key={i}/>
             })
