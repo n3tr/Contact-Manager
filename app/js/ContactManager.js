@@ -5,6 +5,7 @@ import { default as ContactCollection}  from './collections/contacts'
 import { default as ContactForm } from './views/contactForm'
 import { default as ContactModel } from './models/contact'
 import ContactList from './components/ContactList.react'
+import NewContact from './components/NewContact.react'
 
 const ContactManager = {
   Models: {},
@@ -28,17 +29,17 @@ const ContactManager = {
     });
 
     router.on('route:newContact', function() {
-      var newContactForm = new ContactForm({
-        model: new ContactModel()
-      });
-
-      newContactForm.on('form:submitted', function(attrs) {
+      // TODO: Temp use, should be replace with flux/redux
+      let onClickSubmit = (attrs, e) => {
         attrs.id = contacts.isEmpty() ? 1 : (_.max(contacts.pluck('id')) + 1);
         contacts.add(attrs);
         router.navigate('contacts', true);
-      });
+      }
 
-      $('.main-container').html(newContactForm.render().$el);
+      ReactDOM.render(
+        <NewContact
+          contact={new ContactModel()}
+          onClickSubmit={onClickSubmit} />, $('.main-container')[0]);
     });
 
     router.on('route:editContact', function(id) {

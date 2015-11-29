@@ -3,6 +3,7 @@ import Contact from './Contact.react'
 
 export default class ContactList extends React.Component {
   onClickDelete(contact, e) {
+    // TODO: Replace with Redux
     e.preventDefault();
     contact.collection.remove(contact);
     this.forceUpdate();
@@ -17,10 +18,10 @@ export default class ContactList extends React.Component {
         </p>
         <ul className="media-list row contacts-container">
           {
-            this.props.contacts.map( (contact) => {
+            this.props.contacts.map( (contact, i) => {
               return <Contact contact={contact} onClickDelete={
                 self.onClickDelete.bind(this)
-              }/>
+              } key={i}/>
             })
           }
         </ul>
