@@ -1,6 +1,8 @@
 Backbone Contact Manager
 ========================
 
+![](https://travis-ci.org/n3tr/Contact-Manager.svg?branch=master)
+
 ## Hacking
 ```
 npm install
