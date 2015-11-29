@@ -18,11 +18,7 @@ class ContactList extends React.Component {
     let { contacts, contactById } = this.props;
     return (
       <div>
-        <h2 className="page-header text-center">List of contacts</h2>
-        <p className="text-center">
-          <Link to="/new" className="btn btn-lg btn-outline">Add Contact</Link>
-        </p>
-        <ul className="media-list row contacts-container">
+        <ul className="contact-list">
           {
             contacts.map( (id, i) => {
               return <Contact contact={contactById[id]} onClickDelete={

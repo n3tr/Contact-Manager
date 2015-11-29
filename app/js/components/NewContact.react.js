@@ -26,56 +26,66 @@ class NewContact extends React.Component {
       })
     }
 
-    history.replace('/');
+    history.replace('/contact/' + attrs.id);
   }
   render () {
     var { editingContact } = this.props;
-    var { name, email, tel } = editingContact ? editingContact : {};
+    var { name, email, tel, avatar } = editingContact ? editingContact : {};
     return (
       <div>
-        <h2 className="page-header text-center"> {editingContact ? 'Create' : 'Edit'} Contact</h2>
-        <form role="form" className="form-horizontal contract-form" onSubmit={this.onFormSubmit.bind(this)}>
-          <div className="form-group">
-            <label className="col-sm-4 control-label">Full name:</label>
-            <div className="col-sm-6">
-              <input
-                type="text"
-                className="form-control contact-name-input"
-                ref="input-name"
-                defaultValue={name} />
+        <h2 className="page-title"> {editingContact ? 'Edit' : 'Create'} Contact</h2>
+        <div className="page-content">
+          {
+            editingContact ? (
+              <div className="edit-contact--thumbnail">
+                <img src={"/faces/" + avatar} />
+              </div>
+            ) : null
+          }
+
+          <form role="form" className="form-horizontal contract-form" onSubmit={this.onFormSubmit.bind(this)}>
+            <div className="form-group">
+              <label className="col-sm-4 control-label">Full name:</label>
+              <div className="col-sm-6">
+                <input
+                  type="text"
+                  className="form-control contact-name-input"
+                  ref="input-name"
+                  defaultValue={name} />
+              </div>
             </div>
-          </div>
-          <div className="form-group">
-            <label className="col-sm-4 control-label">Email address:</label>
-            <div className="col-sm-6">
-              <input
-                type="email"
-                className="form-control contact-email-input"
-                defaultValue={email}
-                ref="input-email"/>
+            <div className="form-group">
+              <label className="col-sm-4 control-label">Email address:</label>
+              <div className="col-sm-6">
+                <input
+                  type="email"
+                  className="form-control contact-email-input"
+                  defaultValue={email}
+                  ref="input-email"/>
+              </div>
             </div>
-          </div>
-          <div className="form-group">
-            <label className="col-sm-4 control-label">Telephone number:</label>
-            <div className="col-sm-6">
-              <input
-                type="tel"
-                className="form-control contact-tel-input"
-                defaultValue={tel}
-                ref="input-tel" />
+            <div className="form-group">
+              <label className="col-sm-4 control-label">Telephone number:</label>
+              <div className="col-sm-6">
+                <input
+                  type="tel"
+                  className="form-control contact-tel-input"
+                  defaultValue={tel}
+                  ref="input-tel" />
+              </div>
             </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-offset-4 col-sm-3">
-              <button
-                type="submit"
-                className="btn btn-outline btn-lg btn-block">Submit</button>
+            <div className="form-group">
+              <div className="col-sm-offset-4 col-sm-3">
+                <button
+                  type="submit"
+                  className="btn btn-outline btn-lg btn-block">Submit</button>
+              </div>
+              <div className="col-sm-3">
+                <a href="#contacts" className="btn btn-outline btn-lg btn-block">Cancel</a>
+              </div>
             </div>
-            <div className="col-sm-3">
-              <a href="#contacts" className="btn btn-outline btn-lg btn-block">Cancel</a>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     )
   }
