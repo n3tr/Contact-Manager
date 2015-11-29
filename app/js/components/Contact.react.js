@@ -5,7 +5,7 @@ const Contact = ({ contact, onClickDelete }) => {
   return (
     <li className="media col-md-6 col-lg-4">
       <div className="thumbnail">
-        <img className="media-object" src={"app/img/faces/" + contact.avatar} />
+        <img className="media-object" src={"faces/" + contact.avatar} />
       </div>
       <div className="media-heading">
         <h3>

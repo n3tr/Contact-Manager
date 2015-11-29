@@ -5,7 +5,9 @@ Backbone Contact Manager
 ```
 npm install
 npm start
-# open index.html
+# open another terminal
+npm run watch
+# localhost:3000
 ```
 
 Simple Backbone.js example application

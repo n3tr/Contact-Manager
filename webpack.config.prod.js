@@ -13,14 +13,21 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel?presets[]=react,presets[]=es2015'
       }
+    ],
+    postLoaders: [
+      {
+        loader: 'transform?envify'
+      }
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': Object.keys(process.env).reduce(function(o, k) {
-        o[k] = JSON.stringify(process.env[k]);
-        return o;
-      }, {})
-    })
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+        minimize:true,
+        compress: { warnings: false },
+        output: {comments: false}
+      }
+    ),
+    new webpack.optimize.OccurenceOrderPlugin()
   ]
 };
