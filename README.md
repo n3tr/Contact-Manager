@@ -1,6 +1,13 @@
 Backbone Contact Manager
 ========================
 
+## Hacking
+```
+npm install
+npm start
+# open index.html
+```
+
 Simple Backbone.js example application
 ## Demo
 http://dmytroyarmak.github.io/backbone-contact-manager
