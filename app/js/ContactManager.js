@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import Router from './router'
 import { default as ContactCollection}  from './collections/contacts'
 import { default as ContactModel } from './models/contact'
@@ -24,7 +25,7 @@ const ContactManager = {
     });
 
     router.on('route:showContacts', function() {
-      ReactDOM.render(<ContactList store={store} />, document.getElementById('root'));
+      ReactDOM.render(<Provider store={store}><ContactList /></Provider>, document.getElementById('root'));
     });
 
     router.on('route:newContact', function() {
@@ -34,10 +35,11 @@ const ContactManager = {
       }
 
       ReactDOM.render(
-        <NewContact
-          store={store}
-          isNew={true}
-          onClickSubmit={onClickSubmit} />, document.getElementById('root'));
+        <Provider store={store}>
+          <NewContact
+            isNew={true}
+            onClickSubmit={onClickSubmit} />
+        </Provider>, document.getElementById('root'));
     });
 
     router.on('route:editContact', function(id) {
@@ -47,10 +49,12 @@ const ContactManager = {
           router.navigate('contacts', true);
         }
         ReactDOM.render(
-          <NewContact
-            editingId={id}
-            store={store}
-            onClickSubmit={onClickSubmit} />, document.getElementById('root'));
+          <Provider store={store}>
+            <NewContact
+              editingId={id}
+              store={store}
+              onClickSubmit={onClickSubmit} />
+          </Provider>, document.getElementById('root'));
       } else {
         router.navigate('contacts', true);
       }
