@@ -81,3 +81,29 @@ a.thumbnail:focus,
 a.thumbnail.active {
   border-color: #563d7c;
 }
+
+/*
+  Page Loader
+*/
+
+.page-loader {
+  
+  height: 28px;
+  width: 28px;
+  animation: rotate 0.8s infinite linear;
+  border: 4px solid #ddd;
+  border-right-color: transparent;
+  border-radius: 50%;
+  text-indent: -1000px;
+  display: block;
+  position: fixed;
+  top:50%;
+  left:0;
+  right:0;
+  margin: auto;
+}
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
