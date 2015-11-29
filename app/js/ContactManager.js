@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Router from './router'
 import { default as ContactCollection}  from './collections/contacts'
-import { default as ContactForm } from './views/contactForm'
 import { default as ContactModel } from './models/contact'
 import ContactList from './components/ContactList.react'
 import NewContact from './components/NewContact.react'
@@ -47,16 +46,16 @@ const ContactManager = {
           editContactForm;
 
       if (contact) {
-        editContactForm = new ContactForm({
-            model: contact
-        });
-
-        editContactForm.on('form:submitted', function(attrs) {
+        // TODO: Temp use, should be replace with flux/redux     
+        let onClickSubmit = (attrs, e) => {
           contact.set(attrs);
           router.navigate('contacts', true);
-        });
+        }
 
-        $('.main-container').html(editContactForm.render().$el);
+        ReactDOM.render(
+          <NewContact
+            contact={contact}
+            onClickSubmit={onClickSubmit} />, $('.main-container')[0]);
       } else {
         router.navigate('contacts', true);
       }

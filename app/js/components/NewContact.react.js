@@ -25,7 +25,7 @@ class NewContact extends React.Component{
                 type="text"
                 className="form-control contact-name-input"
                 ref="input-name"
-                value={name} />
+                defaultValue={name} />
             </div>
           </div>
           <div className="form-group">
@@ -34,7 +34,7 @@ class NewContact extends React.Component{
               <input
                 type="email"
                 className="form-control contact-email-input"
-                value={email}
+                defaultValue={email}
                 ref="input-email"/>
             </div>
           </div>
@@ -44,7 +44,7 @@ class NewContact extends React.Component{
               <input
                 type="tel"
                 className="form-control contact-tel-input"
-                value={tel}
+                defaultValue={tel}
                 ref="input-tel" />
             </div>
           </div>
