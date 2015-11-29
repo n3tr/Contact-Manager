@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const Contact = ({ contact, onClickDelete }) => {
 
@@ -11,12 +12,12 @@ const Contact = ({ contact, onClickDelete }) => {
         <h3>
           {contact.name}
           <small>
-            <a href={"#contacts/edit/" + contact.id}><span className="glyphicon glyphicon-pencil"></span></a>
-            <a href={"#contacts/delete/" + contact.id} className="delete-contract" onClick={
+            <Link to={ contact.id + "/edit" }><span className="glyphicon glyphicon-pencil"></span></Link>
+            <Link to={ contact.id + "/delete/"} className="delete-contract" onClick={
                 onClickDelete.bind(this, contact)
               }>
               <span className="glyphicon glyphicon-trash"></span>
-            </a>
+            </Link>
           </small>
         </h3>
       </div>

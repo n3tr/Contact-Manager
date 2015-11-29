@@ -1,41 +1,39 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-class NewContact extends React.Component{
+class NewContact extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
-    var { store, editingId } = this.props;
-    var { contacts } = store.getState();
+    var { editingContact, contacts, dispatch, history } = this.props;
     var attrs = {
       name: this.refs['input-name'].value,
       tel: this.refs['input-tel'].value,
       email: this.refs['input-email'].value,
     };
 
-    if(editingId) {
-      attrs.id = editingId;
-      store.dispatch({
+    if(editingContact) {
+      attrs.id = editingContact.id;
+      dispatch({
         type: 'UPDATE_CONTACT',
         contact: attrs
       })
     } else {
       attrs.id = contacts.length === 0 ? 1 : contacts[contacts.length - 1] + 1;
-      attrs.avatar =  _.random(1, 15) + '.jpg',
-      store.dispatch({
+      attrs.avatar =  (Math.floor(Math.random() * 15) + 1)  + '.jpg';
+      dispatch({
         type: 'ADD_CONTACT',
         contact: attrs
       })
     }
 
-    // Should be replace with redux
-    this.props.onClickSubmit(attrs);
+    history.replace('/');
   }
   render () {
-    var { store, isNew, editingId } = this.props;
-    var { contactById } = store.getState()
-    var { name, email, tel } = contactById[editingId] ? contactById[editingId] : {};
+    var { editingContact } = this.props;
+    var { name, email, tel } = editingContact ? editingContact : {};
     return (
       <div>
-        <h2 className="page-header text-center"> {isNew ? 'Create' : 'Edit'} Contact</h2>
+        <h2 className="page-header text-center"> {editingContact ? 'Create' : 'Edit'} Contact</h2>
         <form role="form" className="form-horizontal contract-form" onSubmit={this.onFormSubmit.bind(this)}>
           <div className="form-group">
             <label className="col-sm-4 control-label">Full name:</label>
@@ -83,4 +81,11 @@ class NewContact extends React.Component{
   }
 }
 
-export default NewContact
+const mapStateToProps = (state, ownProps) => {
+  return {
+    editingContact: state.contactById[ownProps.params.id],
+    contacts: state.contacts
+  }
+}
+
+export default connect(mapStateToProps)(NewContact)
