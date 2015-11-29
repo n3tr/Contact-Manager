@@ -3,7 +3,7 @@ export default Backbone.Model.extend({
     name: null,
     tel: null,
     email: null,
-    avatar: null
+    avatar: _.random(1, 15) + '.jpg'
   },
 
   initialize: function() {

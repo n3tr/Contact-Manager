@@ -1,6 +1,8 @@
 import ContactManager from './ContactManager';
+import { createStore, combineReducers } from 'redux'
+import contactReducer from './reducers/contactReducer'
 
-ContactManager.start({
+let initialState = {
   contacts: [
     {
       id: 1,
@@ -39,4 +41,17 @@ ContactManager.start({
       email: 'RodolfoPRobinett@jourrapide.com'
     }
   ]
+};
+
+for (var i in initialState.contacts) {
+  initialState.contacts[i].avatar = _.random(1, 15) + '.jpg'
+}
+
+// Redux
+let ContactApp = combineReducers({
+  contacts: contactReducer
 });
+let store = createStore(ContactApp, initialState);
+
+
+ContactManager.start(initialState,store);

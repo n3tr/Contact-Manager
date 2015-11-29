@@ -11,9 +11,10 @@ const ContactManager = {
   Collections: {},
   Views: {},
 
-  start: function(data) {
+  start: function(data, store) {
     var contacts = new ContactCollection(data.contacts),
-        router = new Router();
+        router = new Router(),
+        store = store;
 
     router.on('route:home', function() {
       router.navigate('contacts', {
@@ -24,7 +25,7 @@ const ContactManager = {
 
     router.on('route:showContacts', function() {
       // Call toJSON on BackBone collection to convert to raw JS object
-      ReactDOM.render(<ContactList contacts={contacts} />, $('.main-container')[0]);
+      ReactDOM.render(<ContactList store={store} />, $('.main-container')[0]);
     });
 
     router.on('route:newContact', function() {
@@ -46,7 +47,7 @@ const ContactManager = {
           editContactForm;
 
       if (contact) {
-        // TODO: Temp use, should be replace with flux/redux     
+        // TODO: Temp use, should be replace with flux/redux
         let onClickSubmit = (attrs, e) => {
           contact.set(attrs);
           router.navigate('contacts', true);

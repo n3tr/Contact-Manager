@@ -2,14 +2,33 @@ import React  from 'react'
 import Contact from './Contact.react'
 
 export default class ContactList extends React.Component {
+
+  constructor(props) {
+    super(props);
+    let { store } = this.props;
+    this.state = store.getState();
+  }
+  componentDidMount() {
+    let { store } = this.props;
+
+    this.unsubscribe = store.subscribe( () =>{
+      this.setState(store.getState())
+    })
+  }
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   onClickDelete(contact, e) {
-    // TODO: Replace with Redux
     e.preventDefault();
-    contact.collection.remove(contact);
-    this.forceUpdate();
+    let { store } = this.props;
+    store.dispatch({
+      type: 'DELETE_CONTACT',
+      id: contact.id
+    });
   }
   render() {
     let self = this;
+    let { contacts } = this.state;
     return (
       <div>
         <h2 className="page-header text-center">List of contacts</h2>
@@ -18,7 +37,7 @@ export default class ContactList extends React.Component {
         </p>
         <ul className="media-list row contacts-container">
           {
-            this.props.contacts.map( (contact, i) => {
+            contacts.map( (contact, i) => {
               return <Contact contact={contact} onClickDelete={
                 self.onClickDelete.bind(this)
               } key={i}/>
