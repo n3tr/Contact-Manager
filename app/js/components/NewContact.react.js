@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class NewContact extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
-    var { editingContact, contacts, dispatch } = this.props;
+    var { editingContact, contacts, dispatch, history } = this.props;
     var attrs = {
       name: this.refs['input-name'].value,
       tel: this.refs['input-tel'].value,
@@ -26,8 +26,7 @@ class NewContact extends React.Component {
       })
     }
 
-    // TODO: Should be replace with redux
-    this.props.onClickSubmit(attrs);
+    history.replace('/');
   }
   render () {
     var { editingContact } = this.props;
@@ -84,7 +83,7 @@ class NewContact extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    editingContact: state.contactById[ownProps.editingId],
+    editingContact: state.contactById[ownProps.params.id],
     contacts: state.contacts
   }
 }

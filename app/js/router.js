@@ -1,3 +1,4 @@
+
 export default Backbone.Router.extend({
   routes: {
     '': 'home',

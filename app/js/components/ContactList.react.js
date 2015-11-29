@@ -1,5 +1,6 @@
 import React  from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import Contact from './Contact.react'
 
 class ContactList extends React.Component {
@@ -19,7 +20,7 @@ class ContactList extends React.Component {
       <div>
         <h2 className="page-header text-center">List of contacts</h2>
         <p className="text-center">
-          <a href="#contacts/new" className="btn btn-lg btn-outline">Add Contact</a>
+          <Link to="/new" className="btn btn-lg btn-outline">Add Contact</Link>
         </p>
         <ul className="media-list row contacts-container">
           {

@@ -1,7 +1,14 @@
 import ContactManager from './ContactManager';
 import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Router } from 'react-router'
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+
 import contactsReducer from './reducers/contactsReducer'
 import contactByIdReducer from './reducers/contactByIdReducer'
+import Routes  from './routes'
 
 let initialState = {
   contacts: [
@@ -65,5 +72,12 @@ let ContactApp = combineReducers({
 });
 let store = createStore(ContactApp, storeState );
 
+ReactDOM.render(
+  <Provider store={store}>
+    <Router children={Routes} history={createBrowserHistory()} />
+  </Provider>,
+  document.getElementById('root')
+);
 
-ContactManager.start(initialState,store);
+
+// ContactManager.start(initialState,store);
