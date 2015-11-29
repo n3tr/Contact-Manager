@@ -1,14 +1,19 @@
 {
   "name": "contact-manager-test",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:n3tr/Contact-Manager.git"
+  },
   "description": "Demonstration to convert Backbone.js application to React + Redux",
   "main": "index.js",
   "scripts": {
     "postinstall": "node ./script/build.js && ./node_modules/bower/bin/bower install",
     "start": "node ./app/js/server.js",
     "dev": "./node_modules/nodemon/bin/nodemon.js ./app/js/server.js",
-    "watch": "node ./script/compile.js",
-    "test": "mocha --compilers js:babel-core/register --watch $(find app -name '*test.js') -R spec"
+    "test": "mocha --compilers js:babel-core/register $(find app -name '*test.js') -R spec",
+    "test-dev": "mocha --compilers js:babel-core/register --watch $(find app -name '*test.js') -R spec",
+    "watch": "node ./script/compile.js"
   },
   "keywords": [
     "redux",
@@ -25,6 +30,7 @@
     "babel-preset-react": "^6.1.18",
     "backbone": "^1.2.3",
     "bower": "^1.6.8",
+    "deep-freeze": "0.0.1",
     "envify": "^3.4.0",
     "express": "^4.13.3",
     "jquery": "^2.1.4",
