@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 var app = express();
+
 app.use(express.static(path.join(__dirname, '..', 'css')));
 app.use(express.static(path.join(__dirname, '..', 'img')));
 app.use(express.static(path.join(__dirname, '..', '..', 'vendor')));

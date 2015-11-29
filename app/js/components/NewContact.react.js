@@ -19,7 +19,7 @@ class NewContact extends React.Component {
       })
     } else {
       attrs.id = contacts.length === 0 ? 1 : contacts[contacts.length - 1] + 1;
-      attrs.avatar =  _.random(1, 15) + '.jpg',
+      attrs.avatar =  (Math.floor(Math.random() * 15) + 1)  + '.jpg';
       dispatch({
         type: 'ADD_CONTACT',
         contact: attrs

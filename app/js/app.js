@@ -1,4 +1,4 @@
-import ContactManager from './ContactManager';
+
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import React from 'react'
@@ -52,7 +52,7 @@ let initialState = {
 };
 
 for (var i in initialState.contacts) {
-  initialState.contacts[i].avatar = _.random(1, 15) + '.jpg'
+  initialState.contacts[i].avatar = ( Math.floor(Math.random() * 15) + 1)  + '.jpg';
 }
 
 var storeState = {
