@@ -1,4 +1,4 @@
-ContactManager.Views.ContactForm = Backbone.View.extend({
+export default Backbone.View.extend({
   template: _.template($('#tpl-new-contact').html()),
 
   events: {

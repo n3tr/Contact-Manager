@@ -1,4 +1,4 @@
-ContactManager.Router = Backbone.Router.extend({
+export default Backbone.Router.extend({
   routes: {
     '': 'home',
     'contacts': 'showContacts',

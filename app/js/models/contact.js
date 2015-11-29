@@ -1,4 +1,4 @@
-ContactManager.Models.Contact = Backbone.Model.extend({
+export default Backbone.Model.extend({
   defaults: {
     name: null,
     tel: null,
