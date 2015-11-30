@@ -4,7 +4,11 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'public/main.css': ['app/css/*.css', 'vendor/bootstrap/dist/css/bootstrap.css']
+          'public/main.css': [
+            'app/css/*.css',
+            'vendor/bootstrap/dist/css/bootstrap.css',
+            'node_modules/sweetalert/dist/sweetalert.css'
+          ]
         }
       }
     },

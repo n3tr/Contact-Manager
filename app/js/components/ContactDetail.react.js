@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import ContactDetailInfo from './ContactDetailInfo.react'
 import ContactDetailAction from './ContactDetailAction.react'
 import ContactDetailAvatar from './ContactDetailAvatar.react'
+import { default as swal } from 'sweetalert'
 
 const ContactDetail = ({contact, dispatch, history, onClickDelete}) => {
   return (
@@ -28,15 +29,30 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const alertConfig = {
+  title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "Cancel",
+  closeOnConfirm: true,
+  closeOnCancel: true
+}
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClickDelete: () => {
-      console.log(ownProps);
-      dispatch({
-        type: 'DELETE_CONTACT',
-        id: ownProps.params.id
-      })
-      ownProps.history.replace('/')
+      var al = swal(alertConfig, function(isConfirm){
+        if (isConfirm) {
+          ownProps.history.replace('/')
+          dispatch({
+            type: 'DELETE_CONTACT',
+            id: ownProps.params.id
+          })
+        }
+      });
     }
   }
 }
