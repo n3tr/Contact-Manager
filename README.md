@@ -3,6 +3,11 @@ Backbone Contact Manager
 
 ![](https://travis-ci.org/n3tr/Contact-Manager.svg?branch=master)
 
+An example of conversion Backbone contact manager app to React + Redux + React Router.. Webpack.. :package:
+
+## Demo
+https://contact-manager-n3.herokuapp.com
+
 ## Hacking
 ```sh
 npm install
@@ -78,10 +83,10 @@ npm test
 - [x] Add Github hook to heroku for auto Deployment
 
 
+---------------------------------------------
 
-Simple Backbone.js example application
-## Demo
-http://dmytroyarmak.github.io/backbone-contact-manager
+Simple ~~Backbone.js~~ React + Redux + React-router example application
+
 
 ## Slides
 http://dmytroyarmak.github.io/codeangels-backbone-introduction
