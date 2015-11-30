@@ -161,6 +161,11 @@ a.thumbnail.active {
   overflow: hidden;
 }
 
+/*
+  CONTACT LIST
+*/
+
+
 .contact-list {
   list-style: none;
   padding: 0 ;
@@ -204,6 +209,9 @@ a.thumbnail.active {
   padding: 0;
 }
 
+/*
+  SIDEBAR
+*/
 
 .sidebar-header {
   height: 64px;
@@ -221,6 +229,7 @@ a.thumbnail.active {
   font-size: 20px;
   text-align: center;
 }
+
 .sidebar-bottom {
   box-sizing: border-box;
   position: fixed;
@@ -260,18 +269,25 @@ a.thumbnail.active {
   color: #999;
 }
 
+
+/*
+  CONTENT
+*/
 .page-title {
+
   position: fixed;
   top: 0;
   right: 0;
   left: 320px;
+
+  line-height: 64px;
+  font-size: 20px;
   background: #fff;
+  border-bottom: 1px solid #eee;
+
   height: 64px;
   margin: 0;
   padding: 0 0 0 24px;
-  line-height: 64px;
-  font-size: 20px;
-  border-bottom: 1px solid #eee;
 }
 
 .page-content {
