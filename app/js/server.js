@@ -2,11 +2,6 @@ var path = require('path');
 var express = require('express');
 var app = express();
 
-if (process.env.NODE_ENV !== 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'css')));
-  app.use(express.static(path.join(__dirname, '..', 'img')));
-  app.use(express.static(path.join(__dirname, '..', '..', 'vendor')));
-}
 app.use(express.static(path.join(__dirname, '..', '..', 'public')));
 
 app.get('*', function(req, res){

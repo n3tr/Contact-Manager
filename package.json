@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "node ./script/build.js && ./node_modules/bower/bin/bower install && grunt",
     "start": "node ./app/js/server.js",
-    "dev": "./node_modules/nodemon/bin/nodemon.js ./app/js/server.js",
+    "dev": "grunt watch & ./node_modules/nodemon/bin/nodemon.js ./app/js/server.js ",
     "test": "mocha --compilers js:babel-core/register $(find app -name '*test.js') -R spec",
     "test-dev": "mocha --compilers js:babel-core/register --watch $(find app -name '*test.js') -R spec",
     "watch": "node ./script/compile.js"
@@ -37,6 +37,7 @@
     "grunt-cli": "0.1.13",
     "grunt-contrib-copy": "0.8.2",
     "grunt-contrib-cssmin": "0.14.0",
+    "grunt-contrib-watch": "^0.6.1",
     "history": "^1.13.1",
     "jquery": "^2.1.4",
     "react": "^0.14.3",

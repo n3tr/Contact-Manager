@@ -4,12 +4,19 @@ Backbone Contact Manager
 ![](https://travis-ci.org/n3tr/Contact-Manager.svg?branch=master)
 
 ## Hacking
-```
+```sh
 npm install
 npm run dev
 # open another terminal
 npm run watch
- # localhost:3000
+# OR
+webpack --watch
+# localhost:3000
+```
+
+## Testing
+```
+npm test
 ```
 
 Simple Backbone.js example application

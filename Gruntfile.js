@@ -17,10 +17,21 @@ module.exports = function(grunt) {
         filter: 'isFile'
       },
     },
+    watch: {
+      scripts: {
+        files: ['app/css/*.css'],
+        tasks: ['cssmin', 'copy'],
+        options: {
+          spawn: false,
+        },
+      },
+    },
   });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.registerTask('default', ['cssmin', 'copy']);
+
 
 };
