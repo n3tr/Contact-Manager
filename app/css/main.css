@@ -1,3 +1,35 @@
+html,body {
+  height: 100%;
+  width: 100%;
+}
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+
 .bs-header {
   position: relative;
   padding: 30px 15px;
@@ -87,7 +119,7 @@ a.thumbnail.active {
 */
 
 .page-loader {
-  
+
   height: 28px;
   width: 28px;
   animation: rotate 0.8s infinite linear;
@@ -106,4 +138,179 @@ a.thumbnail.active {
 @keyframes rotate {
   0%    { transform: rotate(0deg); }
   100%  { transform: rotate(360deg); }
+}
+
+
+/*
+  LAYOUT
+*/
+
+#sidebar {
+  overflow: scroll;
+  position: fixed;
+    width: 320px;
+    height: 100%;
+    left: 0;
+    border-right: 1px solid #eee;
+}
+
+
+
+#content {
+  margin-left: 320px;
+  overflow: hidden;
+}
+
+/*
+  CONTACT LIST
+*/
+
+
+.contact-list {
+  list-style: none;
+  padding: 0 ;
+  margin: 64px 0 47px;
+
+}
+
+.contact-list-item {
+  box-sizing: border-box;
+  width: 320px;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+}
+.contact-list-item--content{
+  padding: 12px;
+}
+
+.contact-list-item:hover {
+  background: #f8f8f8;
+}
+.contact-list-item--info {
+  float: left;
+  margin-left: 8px;
+}
+
+.contact-list-item--thumbnail {
+  float:left;
+}
+
+.contact-list-item--thumbnail img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.contact-list-item--title {
+  font-size:18px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+/*
+  SIDEBAR
+*/
+
+.sidebar-header {
+  height: 64px;
+  width: 320px;
+  position: fixed;
+  top:0;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+.sidebar-header--title {
+  padding: 0;
+  margin: 0;
+  line-height: 64px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.sidebar-bottom {
+  box-sizing: border-box;
+  position: fixed;
+  padding: 0;
+  bottom: 0;
+  height: 48px;
+  width: 320px;
+  display: block;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+}
+
+.new-contact-button {
+  display: block;
+  text-align: center;
+  line-height: 48px;
+  background: #fafafa;
+  color: #aaa;
+  font-size: 17px;
+}
+
+.new-contact-button:active,
+.new-contact-button:visited,
+.new-contact-button:hover {
+  text-decoration: none;
+  color: #999;
+}
+
+.new-contact-button:before {
+  content: "+";
+  margin-right:8px;
+  font-size: 20px;
+  color: #aaa;
+}
+
+.new-contact-button:hover:before{
+  color: #999;
+}
+
+
+/*
+  CONTENT
+*/
+.page-title {
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 320px;
+
+  line-height: 64px;
+  font-size: 20px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+
+  height: 64px;
+  margin: 0;
+  padding: 0 0 0 24px;
+}
+
+.page-content {
+  padding: 96px 48px 0;
+}
+
+.edit-contact--thumbnail {
+  display: block;
+  text-align: center;
+  width:100%;
+  margin-bottom: 24px;
+}
+
+.edit-contact--thumbnail img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+}
+
+.contact-detail--info {
+  margin-top: 24px;
+}
+
+.contact-detail--action .btn {
+  margin-right:8px;
 }
