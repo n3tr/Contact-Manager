@@ -181,13 +181,22 @@ a.thumbnail.active {
   overflow: hidden;
 }
 
+.contact-list-item--link {
+  display: block;
+}
+
+.contact-list-item--link.active {
+  background: #efefef;
+}
+
+.contact-list-item--link:hover {
+  background: #f8f8f8;
+}
+
 .contact-list-item--content{
   padding: 12px;
 }
 
-.contact-list-item:hover {
-  background: #f8f8f8;
-}
 .contact-list-item--info {
   float: left;
   margin-left: 8px;

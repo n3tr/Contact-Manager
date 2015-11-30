@@ -67,6 +67,7 @@ npm test
 
 #### To be implemented
 
+- [ ] Refactor ContactForm component tree.
 - [ ] Data Model
   - Immutable.js or custom base model, should be archived immutable data flow.
 - [ ] Design: Contact Detail.
