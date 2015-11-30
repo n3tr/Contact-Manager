@@ -15,5 +15,5 @@ ReactDOM.render(
   <Provider store={store}>
     <Router children={Routes} history={createBrowserHistory()} />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('app')
 );

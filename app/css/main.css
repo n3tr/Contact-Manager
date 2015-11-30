@@ -78,6 +78,11 @@ a.thumbnail.active {
   LAYOUT
 */
 
+#app {
+  /* Padding for Global header*/
+  padding-top: 48px
+}
+
 #sidebar {
   position: fixed;
   left: 0;
@@ -283,9 +288,9 @@ a.thumbnail.active {
   text-decoration: none;
 }
 
-#root {
-  padding-top: 48px
-}
+/*
+  Bar button
+*/
 
 .bar-button,
 .bar-button:visited {
@@ -306,10 +311,6 @@ a.thumbnail.active {
 .bar-button--new {
   right: 20px;
 }
-
-
-
-
 
 @media (max-width: 600px) {
 
