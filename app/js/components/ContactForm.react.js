@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-class NewContact extends React.Component {
+class ContactForm extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
     var { editingContact, contacts, dispatch, history } = this.props;
@@ -98,4 +98,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(NewContact)
+export default connect(mapStateToProps)(ContactForm)
