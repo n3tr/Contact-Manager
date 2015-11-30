@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const Contact = ({ contact, onClickDelete }) => {
-
   return (
     <li className="contact-list-item">
       <Link to={"/contact/" + contact.id} >
