@@ -4,8 +4,12 @@ import ContactList from './ContactList.react'
 
 export default class ContactSidebar extends React.Component {
   render() {
+
+    var shouldHideSidebar = this.props.location.pathname !== '/';
+
+
     return (
-      <div id="sidebar">
+      <div id="sidebar" className={shouldHideSidebar ? "hide-mobile" : null}>
         <div className="sidebar-header">
           <h2 className="sidebar-header--title">Contacts</h2>
         </div>

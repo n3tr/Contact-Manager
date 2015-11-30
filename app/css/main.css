@@ -169,7 +169,7 @@ a.thumbnail.active {
 .contact-list {
   list-style: none;
   padding: 0 ;
-  margin: 64px 0 47px;
+  margin: 64px 0 94px;
 
 }
 
@@ -180,6 +180,7 @@ a.thumbnail.active {
   border-bottom: 1px solid #eee;
   overflow: hidden;
 }
+
 .contact-list-item--content{
   padding: 12px;
 }
@@ -217,7 +218,7 @@ a.thumbnail.active {
   height: 64px;
   width: 320px;
   position: fixed;
-  top:0;
+  /*top: 0;*/
   border-bottom: 1px solid #eee;
   background: #fff;
 }
@@ -276,7 +277,7 @@ a.thumbnail.active {
 .page-title {
 
   position: fixed;
-  top: 0;
+  /*top: 0;*/
   right: 0;
   left: 320px;
 
@@ -313,4 +314,62 @@ a.thumbnail.active {
 
 .contact-detail--action .btn {
   margin-right:8px;
+}
+
+/*
+  GLOBAL-HEADER
+*/
+
+#global-header {
+  height: 48px;
+  width: 100%;
+  display: block;
+  background: #6565C1;
+  position: fixed;
+  top: 0;
+}
+
+#global-header h1 {
+  margin:0;
+  padding: 0;
+  line-height: 48px;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+}
+
+#global-header h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#root {
+  padding-top: 48px
+}
+
+@media (max-width: 600px) {
+  .show-mobile {
+    display: block;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+  /*
+    SIDEBAR
+  */
+  #sidebar, .sidebar-header, .sidebar-bottom, .contact-list, .contact-list-item  {
+    width: 100% !important;
+  }
+
+  #content {
+    margin-left:0;
+  }
+
+  .page-title{
+    left: 0;
+    right:0;
+  }
+
 }
