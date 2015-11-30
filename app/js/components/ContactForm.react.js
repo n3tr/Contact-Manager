@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 class ContactForm extends React.Component {
   onFormSubmit(e) {
@@ -31,6 +32,9 @@ class ContactForm extends React.Component {
   render () {
     var { editingContact } = this.props;
     var { name, email, tel, avatar } = editingContact ? editingContact : {};
+
+    var cancelLink = "/" + (editingContact ? 'contact/' + editingContact.id : "");
+    console.log(cancelLink);
     return (
       <div>
         <h2 className="page-title"> {editingContact ? 'Edit' : 'Create'} Contact</h2>
@@ -78,10 +82,12 @@ class ContactForm extends React.Component {
               <div className="col-sm-offset-4 col-sm-3">
                 <button
                   type="submit"
-                  className="btn btn-outline btn-lg btn-block">Submit</button>
+                  className="btn btn-primary btn-lg btn-block">Submit</button>
               </div>
               <div className="col-sm-3">
-                <a href="#contacts" className="btn btn-outline btn-lg btn-block">Cancel</a>
+                <Link
+                  to={cancelLink}
+                  className="btn btn-default btn-lg btn-block">Cancel</Link>
               </div>
             </div>
           </form>
