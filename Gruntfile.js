@@ -18,6 +18,9 @@ module.exports = function(grunt) {
       },
     },
     watch: {
+      options: {
+        atBegin: true
+      },
       scripts: {
         files: ['app/css/*.css'],
         tasks: ['cssmin', 'copy'],
