@@ -287,6 +287,30 @@ a.thumbnail.active {
   padding-top: 48px
 }
 
+.bar-button,
+.bar-button:visited {
+  position: absolute;
+  top: 15px;
+  font-size: 18px;
+  color: #efefef;
+}
+
+.bar-button:hover,{
+  color: #dfdfdf;
+}
+
+.bar-button--home {
+  left: 20px;
+}
+
+.bar-button--new {
+  right: 20px;
+}
+
+
+
+
+
 @media (max-width: 600px) {
 
   .hide-mobile {

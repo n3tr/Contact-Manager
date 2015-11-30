@@ -14,12 +14,23 @@ module.exports = function(grunt) {
     },
     copy: {
       main: {
-        expand: true,
-        cwd: 'app/img/',
-        src: '**',
-        dest: 'public/',
-        filter: 'isFile'
-      },
+        files: [
+          {
+            expand: true,
+            cwd: 'app/img/',
+            src: '**',
+            dest: 'public/',
+            filter: 'isFile'
+          },
+          {
+            expand: true,
+            cwd: 'vendor/bootstrap/fonts/',
+            src: '**',
+            dest: 'public/fonts/',
+            filter: 'isFile'
+          }
+        ]
+      }
     },
     watch: {
       options: {
