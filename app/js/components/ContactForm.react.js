@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import ContactFormAvatar from './ContactFormAvatar.react'
 
 class ContactForm extends React.Component {
   onFormSubmit(e) {
@@ -13,12 +14,14 @@ class ContactForm extends React.Component {
     };
 
     if(editingContact) {
+      // Editing Mode attach old id and dispatch UPDATE_CONTACT
       attrs.id = editingContact.id;
       dispatch({
         type: 'UPDATE_CONTACT',
         contact: attrs
       })
     } else {
+      // New Contact Mode Generate Id, Avatar and dispatch 'ADD_CONTACT'
       attrs.id = contacts.length === 0 ? 1 : contacts[contacts.length - 1] + 1;
       attrs.avatar =  (Math.floor(Math.random() * 15) + 1)  + '.jpg';
       dispatch({
@@ -34,19 +37,13 @@ class ContactForm extends React.Component {
     var { name, email, tel, avatar } = editingContact ? editingContact : {};
 
     var cancelLink = "/" + (editingContact ? 'contact/' + editingContact.id : "");
-    console.log(cancelLink);
     return (
       <div>
         <h2 className="page-title"> {editingContact ? 'Edit' : 'Create'} Contact</h2>
         <div className="page-content">
           {
-            editingContact ? (
-              <div className="edit-contact--thumbnail">
-                <img src={"/faces/" + avatar} />
-              </div>
-            ) : null
+            editingContact ? ( <ContactFormAvatar avatarUrl={avatar} /> ) : null
           }
-
           <form role="form" className="form-horizontal contract-form" onSubmit={this.onFormSubmit.bind(this)}>
             <div className="form-group">
               <label className="col-sm-4 control-label">Full name:</label>
