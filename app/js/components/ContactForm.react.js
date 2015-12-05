@@ -2,36 +2,56 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ContactFormAvatar from './ContactFormAvatar.react'
+import ContactFormName from './ContactFormName.react'
+import ContactFormEmail from './ContactFormEmail.react'
+import ContactFormTel from './ContactFormTel.react'
 
 class ContactForm extends React.Component {
+
+  createNewContact(attrs) {
+    var { dispatch, contacts,history } = this.props;
+    var newId = contacts.length === 0 ? 1 : contacts[contacts.length - 1] + 1;
+    var avatar = (Math.floor(Math.random() * 15) + 1)  + '.jpg';
+    var contact = Object.assign({}, attrs, {
+      id: newId,
+      avatar: avatar
+    })
+    dispatch({
+      type: 'ADD_CONTACT',
+      contact: contact
+    })
+    history.replace('/contact/' + contact.id);
+  }
+
+  updateContact(attrs) {
+    var { editingContact, dispatch, history } = this.props;
+    var contact = Object.assign({}, attrs, {
+      id: editingContact.id
+    })
+    dispatch({
+      type: 'UPDATE_CONTACT',
+      contact: contact
+    })
+    history.replace('/contact/' + contact.id);
+  }
+
   onFormSubmit(e) {
     e.preventDefault();
+
     var { editingContact, contacts, dispatch, history } = this.props;
     var attrs = {
-      name: this.refs['input-name'].value,
-      tel: this.refs['input-tel'].value,
-      email: this.refs['input-email'].value,
+      name: this.inputName.getValue(),
+      tel: this.inputTel.getValue(),
+      email: this.inputEmail.getValue()
     };
 
-    if(editingContact) {
-      // Editing Mode attach old id and dispatch UPDATE_CONTACT
-      attrs.id = editingContact.id;
-      dispatch({
-        type: 'UPDATE_CONTACT',
-        contact: attrs
-      })
-    } else {
-      // New Contact Mode Generate Id, Avatar and dispatch 'ADD_CONTACT'
-      attrs.id = contacts.length === 0 ? 1 : contacts[contacts.length - 1] + 1;
-      attrs.avatar =  (Math.floor(Math.random() * 15) + 1)  + '.jpg';
-      dispatch({
-        type: 'ADD_CONTACT',
-        contact: attrs
-      })
+    if (editingContact) {
+      this.updateContact(attrs);
+    }else{
+      this.createNewContact(attrs);
     }
-
-    history.replace('/contact/' + attrs.id);
   }
+
   render () {
     var { editingContact } = this.props;
     var { name, email, tel, avatar } = editingContact ? editingContact : {};
@@ -41,40 +61,24 @@ class ContactForm extends React.Component {
       <div>
         <h2 className="page-title"> {editingContact ? 'Edit' : 'Create'} Contact</h2>
         <div className="page-content">
-          {
-            editingContact ? ( <ContactFormAvatar avatarUrl={avatar} /> ) : null
-          }
+
           <form role="form" className="form-horizontal contract-form" onSubmit={this.onFormSubmit.bind(this)}>
-            <div className="form-group">
-              <label className="col-sm-4 control-label">Full name:</label>
-              <div className="col-sm-6">
-                <input
-                  type="text"
-                  className="form-control contact-name-input"
-                  ref="input-name"
-                  defaultValue={name} />
-              </div>
-            </div>
-            <div className="form-group">
-              <label className="col-sm-4 control-label">Email address:</label>
-              <div className="col-sm-6">
-                <input
-                  type="email"
-                  className="form-control contact-email-input"
-                  defaultValue={email}
-                  ref="input-email"/>
-              </div>
-            </div>
-            <div className="form-group">
-              <label className="col-sm-4 control-label">Telephone number:</label>
-              <div className="col-sm-6">
-                <input
-                  type="tel"
-                  className="form-control contact-tel-input"
-                  defaultValue={tel}
-                  ref="input-tel" />
-              </div>
-            </div>
+            {
+              editingContact ? (
+                <ContactFormAvatar
+                  avatarUrl={avatar}
+                  ref={ (ref) => this.inputAvatar = ref } />
+              ) : null
+            }
+            <ContactFormName
+              defaultValue={name}
+              ref={ (ref) => this.inputName = ref } />
+            <ContactFormEmail
+              defaultValue={email}
+              ref={ (ref) => this.inputEmail = ref } />
+            <ContactFormTel
+              defaultValue={tel}
+              ref={ (ref) => this.inputTel = ref } />
             <div className="form-group">
               <div className="col-sm-offset-4 col-sm-3">
                 <button
